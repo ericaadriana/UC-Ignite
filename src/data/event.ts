@@ -8,6 +8,10 @@ export const event = {
   venue: "Universitas Ciputra",
   city: "Surabaya, Indonesia",
   dates: "18–20 Nov 2026",
+  // Countdown target, in Surabaya time (WIB, UTC+7). Change the hour once the
+  // opening time is confirmed.
+  startsAt: "2026-11-18T00:00:00+07:00",
+  endsAt: "2026-11-21T00:00:00+07:00",
   registerUrl: "https://forms.gle/dq55e72DgkMx2MmJ6",
   instagram: "uc_ejourney",
   site: "uc-ignite2026.vercel.app",

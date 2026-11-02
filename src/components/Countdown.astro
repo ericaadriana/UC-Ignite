@@ -1,0 +1,76 @@
+---
+import { event } from "../data/event";
+
+const units = [
+  { key: "days", label: "Days" },
+  { key: "hours", label: "Hours" },
+  { key: "minutes", label: "Minutes" },
+  { key: "seconds", label: "Seconds" },
+];
+---
+
+<div
+  id="countdown"
+  class="mx-auto mt-10 max-w-xl"
+  data-start={event.startsAt}
+  data-end={event.endsAt}
+>
+  <p id="countdown-label" class="text-xs font-semibold tracking-widest text-white/60">EVENT STARTS IN</p>
+
+  <div id="countdown-clock" class="mt-3 grid grid-cols-4 gap-2 sm:gap-4" role="timer" aria-live="off">
+    {units.map((u) => (
+      <div class="rounded-2xl bg-white/5 px-2 py-3 ring-1 ring-white/15 backdrop-blur sm:py-4">
+        <span data-unit={u.key} class="block font-display text-3xl font-black tabular-nums text-fire sm:text-5xl">--</span>
+        <span class="mt-1 block text-[10px] font-semibold tracking-widest text-white/60 uppercase sm:text-xs">{u.label}</span>
+      </div>
+    ))}
+  </div>
+
+  <p id="countdown-message" class="mt-3 hidden font-display text-2xl font-bold text-fire sm:text-3xl"></p>
+</div>
+
+<script>
+  const root = document.getElementById("countdown");
+  if (root) {
+    const start = new Date(root.dataset.start!).getTime();
+    const end = new Date(root.dataset.end!).getTime();
+    const label = document.getElementById("countdown-label")!;
+    const clock = document.getElementById("countdown-clock")!;
+    const message = document.getElementById("countdown-message")!;
+    const cells = Object.fromEntries(
+      [...root.querySelectorAll<HTMLElement>("[data-unit]")].map((el) => [el.dataset.unit, el]),
+    );
+    const pad = (n: number) => String(n).padStart(2, "0");
+
+    const showMessage = (text: string) => {
+      label.classList.add("hidden");
+      clock.classList.add("hidden");
+      message.textContent = text;
+      message.classList.remove("hidden");
+    };
+
+    const tick = () => {
+      const now = Date.now();
+      if (now >= end) {
+        showMessage("Thank you for joining IGNITE 2026!");
+        return false;
+      }
+      if (now >= start) {
+        showMessage("🔥 IGNITE is happening now!");
+        return true;
+      }
+      const s = Math.floor((start - now) / 1000);
+      cells.days.textContent = String(Math.floor(s / 86400));
+      cells.hours.textContent = pad(Math.floor((s % 86400) / 3600));
+      cells.minutes.textContent = pad(Math.floor((s % 3600) / 60));
+      cells.seconds.textContent = pad(s % 60);
+      return true;
+    };
+
+    if (tick()) {
+      const timer = setInterval(() => {
+        if (!tick()) clearInterval(timer);
+      }, 1000);
+    }
+  }
+</script>
