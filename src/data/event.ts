@@ -13,7 +13,7 @@ export const event = {
   endsAt: "2026-11-21T00:00:00+07:00",
   registerUrl: "https://forms.gle/dq55e72DgkMx2MmJ6",
   instagram: "uc_ejourney",
-  site: "uc-ignite2026.vercel.app",
+  site: "ucignite2026.vercel.app",
 };
 
 export const pillars = [
