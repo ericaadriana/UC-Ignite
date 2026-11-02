@@ -1,0 +1,38 @@
+---
+import "../styles/global.css";
+import { event } from "../data/event";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${event.name} — ${event.fullName}`,
+  description = `${event.theme}. ${event.venue}, ${event.dates}.`,
+} = Astro.props;
+
+const ogImage = new URL("/images/og.jpg", Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={Astro.url.href} />
+    <meta name="theme-color" content="#0d1450" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body class="font-sans antialiased">
+    <slot />
+  </body>
+</html>
