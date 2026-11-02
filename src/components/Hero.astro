@@ -1,0 +1,53 @@
+---
+import { event } from "../data/event";
+---
+
+<section id="top" class="space-bg relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="mx-auto mb-10 w-fit rounded-full bg-white px-5 py-2 shadow-lg">
+      <img
+        src="/images/partners.webp"
+        alt="Universitas Ciputra, BAN-PT Unggul, Diktisaintek Berdampak, Global Entrepreneurship Week Indonesia"
+        class="h-8 w-auto sm:h-10"
+        width="660"
+        height="62"
+      />
+    </div>
+
+    <div class="text-center">
+      <h1 class="font-display text-6xl font-black tracking-wider glow-title sm:text-8xl lg:text-9xl">
+        {event.name}
+      </h1>
+      <p class="mt-4 font-display text-lg font-bold tracking-wide text-fire sm:text-2xl">
+        {event.fullName.toUpperCase()}
+      </p>
+      <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
+        {event.theme}
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-semibold sm:text-base">
+        <span class="inline-flex items-center gap-2 rounded-full bg-violet/40 px-4 py-2 ring-1 ring-white/15">
+          <svg class="h-4 w-4 text-ember" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"></path></svg>
+          {event.venue}
+        </span>
+        <span class="inline-flex items-center gap-2 rounded-full bg-rose/30 px-4 py-2 ring-1 ring-white/15">
+          <svg class="h-4 w-4 text-ember" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>
+          {event.dates}
+        </span>
+      </div>
+
+      <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a
+          href={event.registerUrl}
+          target="_blank"
+          rel="noopener"
+          class="btn-fire w-full rounded-full px-8 py-3.5 text-base font-bold text-white shadow-xl shadow-rose/30 transition hover:brightness-110 sm:w-auto"
+        >Register now</a>
+        <a
+          href="#tickets"
+          class="w-full rounded-full px-8 py-3.5 text-base font-semibold text-white ring-1 ring-white/30 transition hover:bg-white/10 sm:w-auto"
+        >See ticket prices</a>
+      </div>
+    </div>
+  </div>
+</section>

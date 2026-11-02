@@ -1,0 +1,66 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/orbitron";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Orbitron Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-night: #070b2e;
+  --color-deep: #0d1450;
+  --color-royal: #1b2a8f;
+  --color-flame: #ff7a3d;
+  --color-ember: #ffb347;
+  --color-rose: #e8467c;
+  --color-violet: #8b4fd8;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background-color: var(--color-night);
+  color: #e8eaff;
+}
+
+/* Starfield + nebula backdrop, like the poster */
+.space-bg {
+  background-color: var(--color-night);
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, #fff9 50%, transparent 51%),
+    radial-gradient(1px 1px at 72% 12%, #fff8 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 38% 62%, #fff7 50%, transparent 51%),
+    radial-gradient(1px 1px at 88% 48%, #fff9 50%, transparent 51%),
+    radial-gradient(1px 1px at 22% 84%, #fff6 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 58% 32%, #fff8 50%, transparent 51%),
+    radial-gradient(60% 50% at 80% 10%, #8b4fd855, transparent 70%),
+    radial-gradient(50% 60% at 0% 70%, #e8467c33, transparent 70%),
+    linear-gradient(180deg, #0d1450 0%, #070b2e 100%);
+}
+
+.text-fire {
+  background: linear-gradient(90deg, var(--color-ember), var(--color-flame) 45%, var(--color-rose));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glow-title {
+  color: #fff7ef;
+  text-shadow:
+    0 0 12px #ff7a3d99,
+    0 0 36px #ff7a3d55;
+}
+
+.btn-fire {
+  background: linear-gradient(90deg, var(--color-rose), var(--color-flame));
+}
+
+.border-fire {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--color-deep), var(--color-deep)) padding-box,
+    linear-gradient(90deg, var(--color-rose), var(--color-ember)) border-box;
+}
