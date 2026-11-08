@@ -107,17 +107,6 @@ footer {
     fx-pulse-glow 4s ease-in-out infinite;
 }
 
-.fx-wave-b {
-  top: 62%;
-  height: 150px;
-  background-size: 777px 150px;
-  opacity: 0.3;
-  transform: scaleY(-1);
-  animation:
-    fx-wave-flow-right-b 90s linear infinite,
-    fx-wave-breathe-flip 8s ease-in-out infinite,
-    fx-pulse-glow 5s ease-in-out infinite 1.5s;
-}
 
 .fx-grid {
   position: absolute;
@@ -155,20 +144,12 @@ section > .fx ~ * {
   to   { background-position: 1036px 0; }
 }
 
-@keyframes fx-wave-flow-right-b {
-  from { background-position: 0 0; }
-  to   { background-position: 777px 0; }
-}
 
 @keyframes fx-wave-breathe {
   0%, 100% { transform: scaleY(1); }
   50%      { transform: scaleY(1.3); }
 }
 
-@keyframes fx-wave-breathe-flip {
-  0%, 100% { transform: scaleY(-1); }
-  50%      { transform: scaleY(-1.3); }
-}
 
 @keyframes fx-pulse-glow {
   0%, 100% { filter: brightness(0.9) hue-rotate(0deg); }
