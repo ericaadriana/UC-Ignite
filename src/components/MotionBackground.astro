@@ -1,20 +1,13 @@
 ---
-// Animated background built from the poster's design assets (Google Drive > Item designs).
+// Page-wide animated background built from the poster's design assets
+// (Google Drive > Item designs). It stays fixed while the content scrolls
+// over it, so the whole page shares one seamless background.
 // The pulse wave is one seamless strip that flows endlessly across the screen.
-// "hero" adds a second wave and the moving grid floor; "section" is a lighter version.
-interface Props {
-  variant?: "hero" | "section";
-}
-const { variant = "section" } = Astro.props;
 ---
 
-<div class="fx" aria-hidden="true">
-  <img src="/images/fx/nebula.webp" alt="" class="fx-nebula" width="600" height="478" decoding="async" />
+<div class="fx fx-page" aria-hidden="true">
+  <img src="/images/fx/nebula.webp" alt="" class="fx-nebula fx-nebula-a" width="600" height="478" decoding="async" />
+  <img src="/images/fx/nebula.webp" alt="" class="fx-nebula fx-nebula-b" width="600" height="478" decoding="async" />
   <div class="fx-wave fx-wave-a"></div>
-  {variant === "hero" && (
-    <>
-      <div class="fx-wave fx-wave-b"></div>
-      <div class="fx-grid"></div>
-    </>
-  )}
+  <div class="fx-wave fx-wave-b"></div>
 </div>

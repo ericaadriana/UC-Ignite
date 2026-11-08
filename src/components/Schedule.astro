@@ -2,7 +2,7 @@
 import { schedule } from "../data/event";
 ---
 
-<section id="schedule" class="bg-deep py-20 sm:py-24">
+<section id="schedule" class="py-20 sm:py-24">
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
     <div class="text-center">
       <p class="text-sm font-semibold tracking-widest text-ember">SCHEDULE</p>
@@ -12,7 +12,7 @@ import { schedule } from "../data/event";
 
     <div class="mt-12 grid gap-6 lg:grid-cols-3">
       {schedule.map((d) => (
-        <div class="rounded-3xl bg-white/5 p-6 ring-1 ring-white/10">
+        <div class="rounded-3xl bg-deep/75 backdrop-blur-sm p-6 ring-1 ring-white/10">
           <div class="flex items-baseline justify-between gap-3">
             <h3 class="font-display text-2xl font-black text-fire">{d.day}</h3>
             <span class="text-sm font-semibold text-white/70">{d.date}</span>

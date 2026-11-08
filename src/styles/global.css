@@ -20,13 +20,10 @@ html {
   scroll-padding-top: 5rem;
 }
 
+/* One seamless starfield backdrop for the whole page, like the poster */
 body {
-  background-color: var(--color-night);
   color: #e8eaff;
-}
-
-/* Starfield + nebula backdrop, like the poster */
-.space-bg {
+  background-attachment: fixed;
   background-color: var(--color-night);
   background-image:
     radial-gradient(1px 1px at 12% 18%, #fff9 50%, transparent 51%),
@@ -40,6 +37,18 @@ body {
     linear-gradient(180deg, #0d1450 0%, #070b2e 100%);
 }
 
+/* Page-wide motion layer: fixed behind all content */
+.fx.fx-page {
+  position: fixed;
+  z-index: 0;
+}
+
+main,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
 /* ---------- Motion background ---------- */
 .fx {
   position: absolute;
@@ -51,13 +60,23 @@ body {
 
 .fx-nebula {
   position: absolute;
-  top: -10%;
-  right: -15%;
   width: min(900px, 90vw);
   height: auto;
-  opacity: 0.55;
   mix-blend-mode: screen;
+}
+
+.fx-nebula-a {
+  top: -10%;
+  right: -15%;
+  opacity: 0.55;
   animation: fx-nebula-drift 40s ease-in-out infinite alternate;
+}
+
+.fx-nebula-b {
+  bottom: -15%;
+  left: -18%;
+  opacity: 0.45;
+  animation: fx-nebula-drift-b 48s ease-in-out infinite alternate;
 }
 
 /* One continuous pulse wave: the tile is the wave plus its mirror image,
@@ -107,14 +126,20 @@ body {
   background-size: 64px 64px;
   transform: perspective(420px) rotateX(62deg);
   transform-origin: bottom;
-  mask-image: linear-gradient(to top, #000 10%, transparent 90%);
+  /* Fade out at both ends so the grid blends into the page */
+  mask-image: linear-gradient(to top, transparent 0%, #000 35%, transparent 95%);
   animation: fx-grid-move 3s linear infinite;
 }
 
-/* Keep page content above the effects */
-.fx ~ * {
+/* Keep a section's content above its own effects (the hero grid) */
+section > .fx ~ * {
   position: relative;
   z-index: 1;
+}
+
+@keyframes fx-nebula-drift-b {
+  from { transform: translate(0, 0) rotate(0deg) scale(1.1); }
+  to   { transform: translate(8%, -6%) rotate(-14deg) scale(0.95); }
 }
 
 @keyframes fx-nebula-drift {
