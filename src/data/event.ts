@@ -38,9 +38,9 @@ export const programs = [
     icon: "M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4",
   },
   {
-    title: "Parallel Insight Sessions",
+    title: "Insight Sessions",
     days: "Day 2 & 3",
-    text: "Talks and hands-on workshops on technology, sustainable innovation and entrepreneurship.",
+    text: "Six sessions in Integrity Hall on family business, social innovation, communication, technology & AI, personal branding and the entrepreneurial mindset.",
     icon: "M4 5h16v10H4zM2 19h20M9 15v4M15 15v4",
   },
   {
@@ -139,7 +139,7 @@ export const speakers = [
 ];
 
 // Public schedule, based on the "Slot Speaker GEW" sheet, the Mini Booklet and
-// the operational rundowns. Main sessions are in Integrity Hall.
+// the operational rundowns. All sessions are in Integrity Hall.
 export const schedule = [
   {
     day: "Day 1",
@@ -162,7 +162,6 @@ export const schedule = [
       { time: "13.30 – 14.30", title: "Successor, Heir, or Standing on Your Own Two Feet?", note: "Family Business · Dr. Teddy Saputra" },
       { time: "14.30 – 15.30", title: "Turning Environmental Challenges into Sustainable Business Opportunities", note: "Social Innovation · Awanda Zidni Rizki" },
       { time: "15.30 – 16.30", title: "Beyond Confidence: Communicate Like an Entrepreneur", note: "Venture Lab · Elsafan Nahak" },
-      { time: "13.30 – 16.30", title: "More parallel sessions in Seminar Rooms 931–933", note: "Entrepreneurial Mindset · Tech & AI · Venture Lab · speakers to be announced" },
       { time: "08.00 – 16.00", title: "Bazaar & live entertainment" },
     ],
   },
@@ -174,8 +173,7 @@ export const schedule = [
       { time: "13.30 – 14.30", title: "Technology & AI session", note: "Prof. Dr. Trianggoro Wiradinata · title coming soon" },
       { time: "14.30 – 15.30", title: "Be the One They Remember: Entrepreneurial Mindset & Personal Branding at Work", note: "Corporate Entrepreneurship · Dr. Christina & Erica Adriana" },
       { time: "15.30 – 16.30", title: "UC Entrepreneurial Learning: Building Mindset, Creating Impact", note: "Entrepreneurial Mindset · Prof. Dr. Astrid Kusumowidagdo" },
-      { time: "13.30 – 16.30", title: "More parallel sessions in Seminar Rooms 931–933", note: "Entrepreneurial Mindset · Community · Tech & AI · speakers to be announced" },
-      { time: "TBA", title: "Closing Ceremony" },
+      { time: "16.30", title: "Closing Ceremony", note: "Right after the last session" },
     ],
   },
 ];
