@@ -51,39 +51,118 @@ export const programs = [
   },
 ];
 
-// Photos come from the "Item designs" folder on Google Drive.
+// Photos come from the "Item designs" folder on Google Drive. Sessions come from
+// the "Slot Speaker GEW" sheet. Speakers are listed in session order.
 export const speakers = [
-  { photo: "astrid", name: "Prof. Dr. Astrid Kusumowidagdo", role: "Vice Rector for Entrepreneurship, Academic, and Research, Universitas Ciputra" },
-  { photo: "ali", name: "Assoc. Prof. Ali Asgar S. Bhagat", role: "Academic Director, MSc in Venture Creation, National University of Singapore" },
-  { photo: "sazali", name: "Mr. Sazali Johari", role: "Deputy Director, MSc in Venture Creation, National University of Singapore" },
-  { photo: "trianggoro", name: "Prof. Dr. Trianggoro Wiradinata", role: "Vice Rector for Student Affairs, Employability, and Industry Collaboration, Universitas Ciputra" },
-  { photo: "teddy", name: "Dr. Teddy Saputra, M.B.A.", role: "Center Director UCFBC, Universitas Ciputra" },
-  { photo: "awanda", name: "Awanda Zidni Rizki, SP., MP.", role: "CEO of Plant Doctor, Founder of Satu Garis Waktu" },
-  { photo: "elsafan", name: "Elsafan Nahak, S.Tr.Pt", role: "Founder of Switchkarir, Public Speaking Mentor" },
-  { photo: "christina-erica", name: "Dr. Christina, S.T., M.M. & Erica Adriana, S.E., M.M.", role: "Entrepreneurship Course Section Head & Entrepreneurship Course Specialist, Universitas Ciputra" },
+  {
+    photo: "ali",
+    name: "Assoc. Prof. Ali Asgar S. Bhagat",
+    role: "Academic Director, MSc in Venture Creation, National University of Singapore",
+    session: {
+      theme: "Global Stage",
+      when: "Wed, 18 Nov · 09.05 (UC students) & 13.35 (public)",
+      title: "Beyond Employment: Designing Your Own Future Through Venture Creation",
+    },
+  },
+  {
+    photo: "sazali",
+    name: "Mr. Sazali Johari",
+    role: "Deputy Director, MSc in Venture Creation, National University of Singapore",
+    session: { theme: "Global Stage", when: "Thu, 19 Nov · 10.00 – 11.30", title: "Startup Ecosystem in Singapore" },
+  },
+  {
+    photo: "teddy",
+    name: "Dr. Teddy Saputra, M.B.A.",
+    role: "Center Director UCFBC, Universitas Ciputra",
+    session: {
+      theme: "Family Business",
+      when: "Thu, 19 Nov · 13.30 – 14.30",
+      title: "Successor, Heir, or Standing on Your Own Two Feet?",
+      description:
+        "Born into a business family, you inherit success, but miss the struggle of building from zero. Third-generation leader Dr. Teddy Saputra shares why building your own venture matters: not for money alone, but for character, courage, and the pride no inheritance can give.",
+    },
+  },
+  {
+    photo: "awanda",
+    name: "Awanda Zidni Rizki, SP., MP.",
+    role: "CEO of Plant Doctor, Founder of Satu Garis Waktu",
+    session: {
+      theme: "Social Innovation",
+      when: "Thu, 19 Nov · 14.30 – 15.30",
+      title: "Turning Environmental Challenges into Sustainable Business Opportunities",
+      description:
+        "Environmental challenges can spark social innovation and sustainable business. Through Plant Doctor and Jelajah Satu Waktu case studies, learn how eco-friendly products and nature-based education solve real problems, create social value and open profitable business opportunities.",
+    },
+  },
+  {
+    photo: "elsafan",
+    name: "Elsafan Nahak, S.Tr.Pt",
+    role: "Founder of Switchkarir, Public Speaking Mentor",
+    session: {
+      theme: "Venture Lab",
+      when: "Thu, 19 Nov · 15.30 – 16.30",
+      title: "Beyond Confidence: Communicate Like an Entrepreneur",
+      description:
+        "A practical seminar on public speaking for entrepreneurs: overcoming nervousness, structuring messages, and building credibility. Learn pitching, storytelling, and verbal and nonverbal techniques to present problems, solutions, and business advantages persuasively, with presentation practice.",
+    },
+  },
+  {
+    photo: "trianggoro",
+    name: "Prof. Dr. Trianggoro Wiradinata",
+    role: "Vice Rector for Student Affairs, Employability, and Industry Collaboration, Universitas Ciputra",
+    session: { theme: "Technology & AI", when: "Fri, 20 Nov · 13.30 – 14.30", title: "Session title coming soon" },
+  },
+  {
+    photo: "christina-erica",
+    name: "Dr. Christina, S.T., M.M. & Erica Adriana, S.E., M.M.",
+    role: "Entrepreneurship Course Section Head & Entrepreneurship Course Specialist, Universitas Ciputra",
+    session: {
+      theme: "Corporate Entrepreneurship",
+      when: "Fri, 20 Nov · 14.30 – 15.30",
+      title: "Be the One They Remember: Entrepreneurial Mindset & Personal Branding at Work",
+      description:
+        "Standing out at work takes more than hard work: it takes an entrepreneurial mindset and a personal brand people remember. Learn how to think like a founder inside your company, build visibility, and turn your ideas into impact that gets you noticed.",
+    },
+  },
+  {
+    photo: "astrid",
+    name: "Prof. Dr. Astrid Kusumowidagdo",
+    role: "Vice Rector for Entrepreneurship, Academic, and Research, Universitas Ciputra",
+    session: {
+      theme: "Entrepreneurial Mindset",
+      when: "Fri, 20 Nov · 15.30 – 16.30",
+      title: "UC Entrepreneurial Learning: Building Mindset, Creating Impact",
+      description:
+        "This session introduces UC Entrepreneurial Learning: building an entrepreneurial mindset until it becomes real impact. Learn how an idea is shaped into consistent action that benefits those around you. Open to students and young people ready to turn ideas into real action.",
+    },
+  },
 ];
 
-// Public schedule, based on the Mini Booklet and the operational rundowns.
+// Public schedule, based on the "Slot Speaker GEW" sheet, the Mini Booklet and
+// the operational rundowns. Main sessions are in Integrity Hall.
 export const schedule = [
   {
     day: "Day 1",
     date: "Wed, 18 Nov",
     focus: "Global Stage with NUS",
     items: [
-      { time: "08.00 – 09.00", title: "Registration & Opening Ceremony" },
-      { time: "09.00 – 10.30", title: "Global Stage: Assoc. Prof. Ali Asgar S. Bhagat (NUS)", note: "UC students only" },
-      { time: "13.30 – 15.00", title: "Global Stage: Assoc. Prof. Ali Asgar S. Bhagat (NUS)", note: "Open to the public" },
+      { time: "08.00 – 09.05", title: "Registration & Opening Ceremony" },
+      { time: "09.05 – 10.30", title: "Beyond Employment: Designing Your Own Future Through Venture Creation", note: "Assoc. Prof. Ali Asgar S. Bhagat (NUS) · UC students only" },
+      { time: "13.35 – 15.00", title: "Beyond Employment: Designing Your Own Future Through Venture Creation", note: "Assoc. Prof. Ali Asgar S. Bhagat (NUS) · Open to the public" },
       { time: "08.00 – 16.00", title: "Bazaar & student performances" },
     ],
   },
   {
     day: "Day 2",
     date: "Thu, 19 Nov",
-    focus: "IBCC & Parallel Sessions",
+    focus: "IBCC & Insight Sessions",
     items: [
-      { time: "09.00 – 12.00", title: "UC IBCC: Business Case Competition", note: "5 countries" },
-      { time: "10.00 – 11.30", title: "Fireside session: Startup Ecosystem in Singapore", note: "Mr. Sazali Johari (NUS)" },
-      { time: "13.30 – 16.30", title: "Parallel Insight Sessions, Track A & B", note: "Family Business · Humanities · Entrepreneurial Mindset · Tech & AI · Social Innovation · Venture Lab" },
+      { time: "09.00 – 12.00", title: "UC IBCC: Business Case Competition", note: "Teams from 5 countries" },
+      { time: "10.00 – 11.30", title: "Startup Ecosystem in Singapore", note: "Mr. Sazali Johari (NUS)" },
+      { time: "13.30 – 14.30", title: "Successor, Heir, or Standing on Your Own Two Feet?", note: "Family Business · Dr. Teddy Saputra" },
+      { time: "14.30 – 15.30", title: "Turning Environmental Challenges into Sustainable Business Opportunities", note: "Social Innovation · Awanda Zidni Rizki" },
+      { time: "15.30 – 16.30", title: "Beyond Confidence: Communicate Like an Entrepreneur", note: "Venture Lab · Elsafan Nahak" },
+      { time: "13.30 – 16.30", title: "More parallel sessions in Seminar Rooms 931–933", note: "Entrepreneurial Mindset · Tech & AI · Venture Lab · speakers to be announced" },
       { time: "08.00 – 16.00", title: "Bazaar & live entertainment" },
     ],
   },
@@ -92,7 +171,10 @@ export const schedule = [
     date: "Fri, 20 Nov",
     focus: "Final Sessions & Closing",
     items: [
-      { time: "13.30 – 16.30", title: "Parallel Insight Sessions & Workshops, Track A & B", note: "Family Business · Venture Lab · Entrepreneurial Skills · Community · Tech & AI · Corporate Entrepreneurship" },
+      { time: "13.30 – 14.30", title: "Technology & AI session", note: "Prof. Dr. Trianggoro Wiradinata · title coming soon" },
+      { time: "14.30 – 15.30", title: "Be the One They Remember: Entrepreneurial Mindset & Personal Branding at Work", note: "Corporate Entrepreneurship · Dr. Christina & Erica Adriana" },
+      { time: "15.30 – 16.30", title: "UC Entrepreneurial Learning: Building Mindset, Creating Impact", note: "Entrepreneurial Mindset · Prof. Dr. Astrid Kusumowidagdo" },
+      { time: "13.30 – 16.30", title: "More parallel sessions in Seminar Rooms 931–933", note: "Entrepreneurial Mindset · Community · Tech & AI · speakers to be announced" },
       { time: "TBA", title: "Closing Ceremony" },
     ],
   },
