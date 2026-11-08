@@ -1,8 +1,10 @@
 ---
 import { speakers } from "../data/event";
+import MotionBackground from "./MotionBackground.astro";
 ---
 
-<section id="speakers" class="space-bg py-20 sm:py-24">
+<section id="speakers" class="space-bg relative overflow-hidden py-20 sm:py-24">
+  <MotionBackground variant="section" />
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
     <div class="text-center">
       <p class="text-sm font-semibold tracking-widest text-ember">SPEAKERS & SESSIONS</p>

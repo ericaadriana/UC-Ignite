@@ -1,0 +1,19 @@
+---
+// Animated background built from the poster's design assets (Google Drive > Item designs).
+// "hero" adds the moving grid floor; "section" is a lighter version for other sections.
+interface Props {
+  variant?: "hero" | "section";
+}
+const { variant = "section" } = Astro.props;
+---
+
+<div class="fx" aria-hidden="true">
+  <img src="/images/fx/nebula.webp" alt="" class="fx-nebula" width="600" height="478" decoding="async" />
+  <img src="/images/fx/pulse.webp" alt="" class="fx-pulse fx-pulse-a" width="1073" height="411" decoding="async" />
+  {variant === "hero" && (
+    <>
+      <img src="/images/fx/pulse.webp" alt="" class="fx-pulse fx-pulse-b" width="1073" height="411" decoding="async" />
+      <div class="fx-grid"></div>
+    </>
+  )}
+</div>
