@@ -52,7 +52,7 @@ export const programs = [
 ];
 
 // Photos come from the "Item designs" folder on Google Drive. Sessions come from
-// the "Slot Speaker GEW" sheet. Speakers are listed in session order.
+// the "Slot Speaker GEW" sheet. Speakers are listed in the order the organizers set.
 export const speakers = [
   {
     photo: "ali",
@@ -71,6 +71,24 @@ export const speakers = [
     session: { theme: "Global Stage", when: "Thu, 19 Nov · 10.00 – 11.30", title: "Startup Ecosystem in Singapore" },
   },
   {
+    photo: "astrid",
+    name: "Prof. Dr. Astrid Kusumowidagdo",
+    role: "Vice Rector for Entrepreneurship, Academic, and Research, Universitas Ciputra",
+    session: {
+      theme: "Entrepreneurial Mindset",
+      when: "Fri, 20 Nov · 15.30 – 16.30",
+      title: "UC Entrepreneurial Learning: Building Mindset, Creating Impact",
+      description:
+        "This session introduces UC Entrepreneurial Learning: building an entrepreneurial mindset until it becomes real impact. Learn how an idea is shaped into consistent action that benefits those around you. Open to students and young people ready to turn ideas into real action.",
+    },
+  },
+  {
+    photo: "trianggoro",
+    name: "Prof. Dr. Trianggoro Wiradinata",
+    role: "Vice Rector for Student Affairs, Employability, and Industry Collaboration, Universitas Ciputra",
+    session: { theme: "Technology & AI", when: "Fri, 20 Nov · 13.30 – 14.30", title: "Session title coming soon" },
+  },
+  {
     photo: "teddy",
     name: "Dr. Teddy Saputra, M.B.A.",
     role: "Center Director UCFBC, Universitas Ciputra",
@@ -80,6 +98,18 @@ export const speakers = [
       title: "Successor, Heir, or Standing on Your Own Two Feet?",
       description:
         "Born into a business family, you inherit success, but miss the struggle of building from zero. Third-generation leader Dr. Teddy Saputra shares why building your own venture matters: not for money alone, but for character, courage, and the pride no inheritance can give.",
+    },
+  },
+  {
+    photo: "christina-erica",
+    name: "Dr. Christina, S.T., M.M. & Erica Adriana, S.E., M.M.",
+    role: "Entrepreneurship Course Section Head & Entrepreneurship Course Specialist, Universitas Ciputra",
+    session: {
+      theme: "Corporate Entrepreneurship",
+      when: "Fri, 20 Nov · 14.30 – 15.30",
+      title: "Be the One They Remember: Entrepreneurial Mindset & Personal Branding at Work",
+      description:
+        "Standing out at work takes more than hard work: it takes an entrepreneurial mindset and a personal brand people remember. Learn how to think like a founder inside your company, build visibility, and turn your ideas into impact that gets you noticed.",
     },
   },
   {
@@ -104,36 +134,6 @@ export const speakers = [
       title: "Beyond Confidence: Communicate Like an Entrepreneur",
       description:
         "A practical seminar on public speaking for entrepreneurs: overcoming nervousness, structuring messages, and building credibility. Learn pitching, storytelling, and verbal and nonverbal techniques to present problems, solutions, and business advantages persuasively, with presentation practice.",
-    },
-  },
-  {
-    photo: "trianggoro",
-    name: "Prof. Dr. Trianggoro Wiradinata",
-    role: "Vice Rector for Student Affairs, Employability, and Industry Collaboration, Universitas Ciputra",
-    session: { theme: "Technology & AI", when: "Fri, 20 Nov · 13.30 – 14.30", title: "Session title coming soon" },
-  },
-  {
-    photo: "christina-erica",
-    name: "Dr. Christina, S.T., M.M. & Erica Adriana, S.E., M.M.",
-    role: "Entrepreneurship Course Section Head & Entrepreneurship Course Specialist, Universitas Ciputra",
-    session: {
-      theme: "Corporate Entrepreneurship",
-      when: "Fri, 20 Nov · 14.30 – 15.30",
-      title: "Be the One They Remember: Entrepreneurial Mindset & Personal Branding at Work",
-      description:
-        "Standing out at work takes more than hard work: it takes an entrepreneurial mindset and a personal brand people remember. Learn how to think like a founder inside your company, build visibility, and turn your ideas into impact that gets you noticed.",
-    },
-  },
-  {
-    photo: "astrid",
-    name: "Prof. Dr. Astrid Kusumowidagdo",
-    role: "Vice Rector for Entrepreneurship, Academic, and Research, Universitas Ciputra",
-    session: {
-      theme: "Entrepreneurial Mindset",
-      when: "Fri, 20 Nov · 15.30 – 16.30",
-      title: "UC Entrepreneurial Learning: Building Mindset, Creating Impact",
-      description:
-        "This session introduces UC Entrepreneurial Learning: building an entrepreneurial mindset until it becomes real impact. Learn how an idea is shaped into consistent action that benefits those around you. Open to students and young people ready to turn ideas into real action.",
     },
   },
 ];
