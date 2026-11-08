@@ -60,31 +60,38 @@ body {
   animation: fx-nebula-drift 40s ease-in-out infinite alternate;
 }
 
-.fx-pulse {
+/* One continuous pulse wave: the tile is the wave plus its mirror image,
+   so it repeats without a visible seam. */
+.fx-wave {
   position: absolute;
-  height: auto;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background-image: url("/images/fx/pulse-tile.webp");
+  background-repeat: repeat-x;
   mix-blend-mode: screen;
-  will-change: transform, opacity;
+  will-change: background-position, transform, filter;
 }
 
-.fx-pulse-a {
-  left: -18%;
-  top: 22%;
-  width: min(1000px, 120vw);
-  opacity: 0.5;
+.fx-wave-a {
+  top: 34%;
+  background-size: 1036px 200px;
+  opacity: 0.55;
   animation:
-    fx-pulse-sway 14s ease-in-out infinite,
+    fx-wave-flow 40s linear infinite,
+    fx-wave-breathe 6s ease-in-out infinite,
     fx-pulse-glow 4s ease-in-out infinite;
 }
 
-.fx-pulse-b {
-  right: -25%;
-  bottom: 14%;
-  width: min(800px, 100vw);
-  opacity: 0.35;
-  transform: scaleX(-1);
+.fx-wave-b {
+  top: 62%;
+  height: 150px;
+  background-size: 777px 150px;
+  opacity: 0.3;
+  transform: scaleY(-1);
   animation:
-    fx-pulse-sway-flip 18s ease-in-out infinite,
+    fx-wave-flow-reverse 55s linear infinite,
+    fx-wave-breathe-flip 8s ease-in-out infinite,
     fx-pulse-glow 5s ease-in-out infinite 1.5s;
 }
 
@@ -115,14 +122,25 @@ body {
   to   { transform: translate(-6%, 8%) rotate(12deg) scale(1.15); }
 }
 
-@keyframes fx-pulse-sway {
-  0%, 100% { transform: translate(0, 0) rotate(-4deg) scaleY(1); }
-  50%      { transform: translate(6%, -4%) rotate(3deg) scaleY(1.25); }
+/* Each loop moves exactly one tile width, so the wave never jumps. */
+@keyframes fx-wave-flow {
+  from { background-position: 0 0; }
+  to   { background-position: -1036px 0; }
 }
 
-@keyframes fx-pulse-sway-flip {
-  0%, 100% { transform: scaleX(-1) translate(0, 0) rotate(3deg) scaleY(1); }
-  50%      { transform: scaleX(-1) translate(8%, 5%) rotate(-4deg) scaleY(1.3); }
+@keyframes fx-wave-flow-reverse {
+  from { background-position: 0 0; }
+  to   { background-position: 777px 0; }
+}
+
+@keyframes fx-wave-breathe {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(1.3); }
+}
+
+@keyframes fx-wave-breathe-flip {
+  0%, 100% { transform: scaleY(-1); }
+  50%      { transform: scaleY(-1.3); }
 }
 
 @keyframes fx-pulse-glow {

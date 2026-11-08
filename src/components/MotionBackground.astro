@@ -1,6 +1,7 @@
 ---
 // Animated background built from the poster's design assets (Google Drive > Item designs).
-// "hero" adds the moving grid floor; "section" is a lighter version for other sections.
+// The pulse wave is one seamless strip that flows endlessly across the screen.
+// "hero" adds a second wave and the moving grid floor; "section" is a lighter version.
 interface Props {
   variant?: "hero" | "section";
 }
@@ -9,10 +10,10 @@ const { variant = "section" } = Astro.props;
 
 <div class="fx" aria-hidden="true">
   <img src="/images/fx/nebula.webp" alt="" class="fx-nebula" width="600" height="478" decoding="async" />
-  <img src="/images/fx/pulse.webp" alt="" class="fx-pulse fx-pulse-a" width="1073" height="411" decoding="async" />
+  <div class="fx-wave fx-wave-a"></div>
   {variant === "hero" && (
     <>
-      <img src="/images/fx/pulse.webp" alt="" class="fx-pulse fx-pulse-b" width="1073" height="411" decoding="async" />
+      <div class="fx-wave fx-wave-b"></div>
       <div class="fx-grid"></div>
     </>
   )}
