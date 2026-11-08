@@ -69,14 +69,14 @@ footer {
   top: -10%;
   right: -15%;
   opacity: 0.55;
-  animation: fx-nebula-drift 40s ease-in-out infinite alternate;
+  animation: fx-nebula-spin 150s linear infinite;
 }
 
 .fx-nebula-b {
   bottom: -15%;
   left: -18%;
   opacity: 0.45;
-  animation: fx-nebula-drift-b 48s ease-in-out infinite alternate;
+  animation: fx-nebula-spin 180s linear infinite reverse;
 }
 
 /* One continuous pulse wave: the tile is the wave plus its mirror image,
@@ -97,7 +97,7 @@ footer {
   background-size: 1036px 200px;
   opacity: 0.55;
   animation:
-    fx-wave-flow 40s linear infinite,
+    fx-wave-flow-right-a 70s linear infinite,
     fx-wave-breathe 6s ease-in-out infinite,
     fx-pulse-glow 4s ease-in-out infinite;
 }
@@ -109,7 +109,7 @@ footer {
   opacity: 0.3;
   transform: scaleY(-1);
   animation:
-    fx-wave-flow-reverse 55s linear infinite,
+    fx-wave-flow-right-b 90s linear infinite,
     fx-wave-breathe-flip 8s ease-in-out infinite,
     fx-pulse-glow 5s ease-in-out infinite 1.5s;
 }
@@ -137,23 +137,19 @@ section > .fx ~ * {
   z-index: 1;
 }
 
-@keyframes fx-nebula-drift-b {
-  from { transform: translate(0, 0) rotate(0deg) scale(1.1); }
-  to   { transform: translate(8%, -6%) rotate(-14deg) scale(0.95); }
-}
-
-@keyframes fx-nebula-drift {
-  from { transform: translate(0, 0) rotate(0deg) scale(1); }
-  to   { transform: translate(-6%, 8%) rotate(12deg) scale(1.15); }
+/* Nebulas turn slowly in place */
+@keyframes fx-nebula-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 /* Each loop moves exactly one tile width, so the wave never jumps. */
-@keyframes fx-wave-flow {
+@keyframes fx-wave-flow-right-a {
   from { background-position: 0 0; }
-  to   { background-position: -1036px 0; }
+  to   { background-position: 1036px 0; }
 }
 
-@keyframes fx-wave-flow-reverse {
+@keyframes fx-wave-flow-right-b {
   from { background-position: 0 0; }
   to   { background-position: 777px 0; }
 }
