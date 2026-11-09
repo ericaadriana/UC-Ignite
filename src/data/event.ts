@@ -94,7 +94,13 @@ export const speakers = [
     photo: "trianggoro",
     name: "Prof. Dr. Trianggoro Wiradinata",
     role: "Vice Rector for Student Affairs, Employability, and Industry Collaboration, Universitas Ciputra",
-    session: { theme: "Technology & AI", when: "Fri, 20 Nov · 13.30 – 14.30", title: "Session title coming soon" },
+    session: {
+      theme: "Technology & AI",
+      when: "Fri, 20 Nov · 13.30 – 14.30",
+      title: "AI for Young Entrepreneurs: From Idea to Business on a Small Budget",
+      description:
+        "Building a business no longer requires a big team or big capital. This session shows how to use generative AI and automation for research, content creation and day-to-day operations. Practical and hands-on for students who want to start their first business with limited resources.",
+    },
   },
   {
     photo: "teddy",
@@ -178,7 +184,7 @@ export const schedule = [
     date: "Fri, 20 Nov",
     focus: "Final Sessions & Closing",
     items: [
-      { time: "13.30 – 14.30", title: "Technology & AI session", note: "Prof. Dr. Trianggoro Wiradinata · title coming soon" },
+      { time: "13.30 – 14.30", title: "AI for Young Entrepreneurs: From Idea to Business on a Small Budget", note: "Technology & AI · Prof. Dr. Trianggoro Wiradinata" },
       { time: "14.30 – 15.30", title: "Be the One They Remember: Entrepreneurial Mindset & Personal Branding at Work", note: "Corporate Entrepreneurship · Dr. Christina & Erica Adriana" },
       { time: "15.30 – 16.30", title: "UC Entrepreneurial Learning: Building Mindset, Creating Impact", note: "Entrepreneurial Mindset · Prof. Dr. Astrid Kusumowidagdo" },
       { time: "16.30", title: "Closing Ceremony", note: "Right after the last session" },
