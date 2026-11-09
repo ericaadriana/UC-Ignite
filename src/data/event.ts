@@ -60,7 +60,7 @@ export const speakers = [
     role: "Academic Director, MSc in Venture Creation, National University of Singapore",
     session: {
       theme: "Global Stage",
-      when: "Wed, 18 Nov · 09.05 (UC students) & 13.35 (public)",
+      when: "Wed, 18 Nov · 09.00 (UC students) & 13.30 (public)",
       title: "Beyond Employment: Designing Your Own Future Through Venture Creation",
       description:
         "Discover how to think like a founder, transform innovative ideas into viable ventures, and create solutions to real-world challenges. Explore the entrepreneurial mindset, essential skills, and opportunities to build impactful businesses while taking ownership of your future beyond traditional employment in an era shaped by AI and rapid technological change.",
@@ -160,9 +160,9 @@ export const schedule = [
     date: "Wed, 18 Nov",
     focus: "Global Stage with NUS",
     items: [
-      { time: "08.00 – 09.05", title: "Registration & Opening Ceremony" },
-      { time: "09.05 – 10.30", title: "Beyond Employment: Designing Your Own Future Through Venture Creation", note: "Assoc. Prof. Ali Asgar S. Bhagat, Ph.D (NUS) · UC students only" },
-      { time: "13.35 – 15.00", title: "Beyond Employment: Designing Your Own Future Through Venture Creation", note: "Assoc. Prof. Ali Asgar S. Bhagat, Ph.D (NUS) · Open to the public" },
+      { time: "08.00 – 09.00", title: "Registration & Opening Ceremony" },
+      { time: "09.00 – 10.30", title: "Beyond Employment: Designing Your Own Future Through Venture Creation", note: "Assoc. Prof. Ali Asgar S. Bhagat, Ph.D (NUS) · UC students only" },
+      { time: "13.30 – 15.00", title: "Beyond Employment: Designing Your Own Future Through Venture Creation", note: "Assoc. Prof. Ali Asgar S. Bhagat, Ph.D (NUS) · Open to the public" },
       { time: "08.00 – 16.00", title: "Bazaar & student performances" },
     ],
   },
