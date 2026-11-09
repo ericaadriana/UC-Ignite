@@ -56,19 +56,27 @@ export const programs = [
 export const speakers = [
   {
     photo: "ali",
-    name: "Assoc. Prof. Ali Asgar S. Bhagat",
+    name: "Assoc. Prof. Ali Asgar S. Bhagat, Ph.D",
     role: "Academic Director, MSc in Venture Creation, National University of Singapore",
     session: {
       theme: "Global Stage",
       when: "Wed, 18 Nov · 09.05 (UC students) & 13.35 (public)",
       title: "Beyond Employment: Designing Your Own Future Through Venture Creation",
+      description:
+        "Discover how to think like a founder, transform innovative ideas into viable ventures, and create solutions to real-world challenges. Explore the entrepreneurial mindset, essential skills, and opportunities to build impactful businesses while taking ownership of your future beyond traditional employment in an era shaped by AI and rapid technological change.",
     },
   },
   {
     photo: "sazali",
     name: "Mr. Sazali Johari",
     role: "Deputy Director, MSc in Venture Creation, National University of Singapore",
-    session: { theme: "Global Stage", when: "Thu, 19 Nov · 10.00 – 11.30", title: "Startup Ecosystem in Singapore" },
+    session: {
+      theme: "Global Stage",
+      when: "Thu, 19 Nov · 10.00 – 11.30",
+      title: "How to Grow Your Business & Sales In This Economy",
+      description:
+        "In today's challenging economic landscape, growing a business requires more than just great products. This talkshow explores practical strategies to boost sales, understand changing consumer behavior, and adapt to market dynamics. Gain valuable insights from experts on building resilience, identifying new opportunities, and driving sustainable business growth in an increasingly competitive market.",
+    },
   },
   {
     photo: "astrid",
@@ -94,7 +102,7 @@ export const speakers = [
     role: "Center Director UCFBC, Universitas Ciputra",
     session: {
       theme: "Family Business",
-      when: "Thu, 19 Nov · 13.30 – 14.30",
+      when: "Thu, 19 Nov · 11.30 – 12.30",
       title: "Successor, Heir, or Standing on Your Own Two Feet?",
       description:
         "Born into a business family, you inherit success, but miss the struggle of building from zero. Third-generation leader Dr. Teddy Saputra shares why building your own venture matters: not for money alone, but for character, courage, and the pride no inheritance can give.",
@@ -147,8 +155,8 @@ export const schedule = [
     focus: "Global Stage with NUS",
     items: [
       { time: "08.00 – 09.05", title: "Registration & Opening Ceremony" },
-      { time: "09.05 – 10.30", title: "Beyond Employment: Designing Your Own Future Through Venture Creation", note: "Assoc. Prof. Ali Asgar S. Bhagat (NUS) · UC students only" },
-      { time: "13.35 – 15.00", title: "Beyond Employment: Designing Your Own Future Through Venture Creation", note: "Assoc. Prof. Ali Asgar S. Bhagat (NUS) · Open to the public" },
+      { time: "09.05 – 10.30", title: "Beyond Employment: Designing Your Own Future Through Venture Creation", note: "Assoc. Prof. Ali Asgar S. Bhagat, Ph.D (NUS) · UC students only" },
+      { time: "13.35 – 15.00", title: "Beyond Employment: Designing Your Own Future Through Venture Creation", note: "Assoc. Prof. Ali Asgar S. Bhagat, Ph.D (NUS) · Open to the public" },
       { time: "08.00 – 16.00", title: "Bazaar & student performances" },
     ],
   },
@@ -158,8 +166,8 @@ export const schedule = [
     focus: "IBCC & Insight Sessions",
     items: [
       { time: "09.00 – 12.00", title: "UC IBCC: Business Case Competition", note: "Teams from 5 countries" },
-      { time: "10.00 – 11.30", title: "Startup Ecosystem in Singapore", note: "Mr. Sazali Johari (NUS)" },
-      { time: "13.30 – 14.30", title: "Successor, Heir, or Standing on Your Own Two Feet?", note: "Family Business · Dr. Teddy Saputra" },
+      { time: "10.00 – 11.30", title: "How to Grow Your Business & Sales In This Economy", note: "Talkshow · Mr. Sazali Johari (NUS)" },
+      { time: "11.30 – 12.30", title: "Successor, Heir, or Standing on Your Own Two Feet?", note: "Family Business · Dr. Teddy Saputra" },
       { time: "14.30 – 15.30", title: "Turning Environmental Challenges into Sustainable Business Opportunities", note: "Social Innovation · Awanda Zidni Rizki" },
       { time: "15.30 – 16.30", title: "Beyond Confidence: Communicate Like an Entrepreneur", note: "Venture Lab · Elsafan Nahak" },
       { time: "08.00 – 16.00", title: "Bazaar & live entertainment" },
