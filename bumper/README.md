@@ -25,7 +25,7 @@ node render.cjs /tmp/frames 0 1950
 ```
 
 ```bash
-ffmpeg -framerate 25 -i /tmp/frames/f%05d.jpg -c:v libx264 -crf 17 -preset slow -pix_fmt yuv420p -movflags +faststart "Bumper Ignite 2026.mp4"
+ffmpeg -framerate 25 -i /tmp/frames/f%05d.jpg -c:v libx264 -crf 21 -preset slow -pix_fmt yuv420p -movflags +faststart "Bumper Ignite 2026.mp4"
 ```
 
 Video belum memiliki musik. Untuk menambahkan musik:
