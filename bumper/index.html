@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8">
+<title>Bumper IGNITE 2026</title>
+<!-- Bumper IGNITE — UC Global Entrepreneurship Week 2026.
+     Semua gerak adalah animasi CSS dengan waktu absolut (detik) sehingga bisa di-seek frame demi frame:
+     window.seek(t) dipanggil render.js untuk tiap frame. Buka ?play untuk pratinjau real-time. -->
+<style>
+@font-face{font-family:Spartan;font-weight:600;src:url(fonts/league-spartan-latin-600-normal.woff2)}
+@font-face{font-family:Spartan;font-weight:700;src:url(fonts/league-spartan-latin-700-normal.woff2)}
+@font-face{font-family:Spartan;font-weight:800;src:url(fonts/league-spartan-latin-800-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000;overflow:hidden}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;color:#fff;font-family:Spartan,"Inter",sans-serif;transform-origin:0 0;
+  background:radial-gradient(ellipse at 50% 125%,#4a64d6 0%,rgba(74,100,214,0) 58%),linear-gradient(180deg,#0b0a28 0%,#191451 55%,#2b3a95 100%)}
+.abs{position:absolute;inset:0}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+
+/* ---------- latar permanen ---------- */
+.neb{position:absolute;inset:-12%;background:url(a/nebula.png) center/cover;opacity:.42;mix-blend-mode:screen;animation:neb 78s linear 0s both}
+@keyframes neb{from{transform:scale(1) translateX(-40px) rotate(0)}to{transform:scale(1.25) translateX(60px) rotate(4deg)}}
+.grid{position:absolute;left:-12%;right:-12%;bottom:-50px;height:400px;background:url(a/grid.png) center bottom/100% 100% no-repeat;opacity:.7;filter:brightness(1.9) saturate(1.3);animation:gridp 6s ease-in-out 0s infinite alternate}
+@keyframes gridp{from{opacity:.5}to{opacity:.85}}
+.spark{position:absolute;border-radius:50%;background:#ffc58a;box-shadow:0 0 10px 3px #ff7a3c;animation:drift var(--t) linear var(--dl) infinite}
+@keyframes drift{0%{transform:translate(0,0);opacity:0}12%{opacity:var(--op)}50%{opacity:calc(var(--op)*.4)}88%{opacity:var(--op)}100%{transform:translate(var(--dx),var(--dy));opacity:0}}
+.vig{position:absolute;inset:0;box-shadow:inset 0 0 330px 90px rgba(0,0,0,.62);pointer-events:none}
+
+/* ---------- mesin scene ---------- */
+.sc{position:absolute;inset:0;visibility:hidden;animation:show calc((var(--e) - var(--s))*1s) linear calc(var(--s)*1s) none}
+@keyframes show{from,to{visibility:visible}}
+.an{animation:var(--in,x) var(--dur,.9s) cubic-bezier(.16,.8,.24,1) calc((var(--s) + var(--d,0))*1s) both,
+              var(--out,x) var(--odur,.55s) ease-in calc((var(--s) + var(--o,999))*1s) forwards}
+@keyframes inBlur{from{opacity:0;filter:blur(26px);transform:scale(1.1)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes inL{from{opacity:0;filter:blur(20px);transform:translateX(-620px)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes inR{from{opacity:0;filter:blur(20px);transform:translateX(620px)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes inUp{from{opacity:0;filter:blur(14px);transform:translateY(70px)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes outBlur{to{opacity:0;filter:blur(30px);transform:scale(1.12)}}
+@keyframes outZoom{to{opacity:0;filter:blur(24px);transform:scale(.62)}}
+.push{position:absolute;inset:0;animation:push calc((var(--e) - var(--s))*1s) linear calc(var(--s)*1s) both}
+@keyframes push{from{transform:scale(1)}to{transform:scale(1.07)}}
+
+/* ---------- komponen ---------- */
+.glow{text-shadow:0 0 18px rgba(255,255,255,.6),0 0 46px rgba(255,140,60,.4)}
+.logo{display:flex;flex-direction:column;align-items:center;gap:calc(var(--w)*.035)}
+.logo img{width:var(--w);filter:drop-shadow(0 0 5px #ffb060) drop-shadow(0 0 22px #ff7a1a) drop-shadow(0 0 60px rgba(255,110,20,.55))}
+.logo span{font-weight:700;font-size:calc(var(--w)*.058);letter-spacing:.115em;color:#fbb040;white-space:nowrap;text-shadow:0 0 18px rgba(255,140,40,.5)}
+.tag{font-weight:700;font-size:42px;letter-spacing:.3em;text-transform:uppercase;color:#ffcf9c;text-shadow:0 0 20px rgba(255,140,60,.6)}
+.label{position:absolute;top:74px;left:0;right:0;text-align:center}
+.speakers{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;gap:70px;padding-bottom:70px}
+.speakers img{height:810px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.45))}
+.pill{display:inline-flex;align-items:center;padding:26px 60px 20px;border-radius:999px;font-weight:700;font-size:62px;letter-spacing:.03em;line-height:1;
+  background:linear-gradient(90deg,#7a2bd1,#d0338f 55%,#ff8a2a);box-shadow:0 10px 50px rgba(208,51,143,.45)}
+.pill.b{background:linear-gradient(90deg,#3b2aa8,#7a2bd1);box-shadow:0 10px 50px rgba(90,60,200,.45)}
+.plate{background:#fff;border-radius:calc(var(--h)*.2);padding:calc(var(--h)*.2) calc(var(--h)*.32);display:flex;gap:calc(var(--h)*.34);align-items:center;box-shadow:0 0 90px rgba(255,160,90,.5);position:relative;overflow:hidden}
+.plate img{height:var(--h)}.plate img.d{height:calc(var(--h)*.9)}.plate img.g{height:calc(var(--h)*.7)}
+.shine{position:absolute;top:-20%;bottom:-20%;width:16%;left:-30%;transform:skewX(-22deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);
+  animation:shine var(--dur,1.4s) ease-in-out calc((var(--s) + var(--d,0))*1s) both}
+.shine.o{background:linear-gradient(90deg,transparent,rgba(255,190,120,.9),transparent)}
+@keyframes shine{from{left:-30%}to{left:115%}}
+.pulse{position:absolute;background:url(a/pulse.png) center/contain no-repeat}
+.sway{animation:sway 7s ease-in-out 0s infinite alternate}
+@keyframes sway{from{transform:var(--r,rotate(0)) translateY(-18px) scaleY(.92)}to{transform:var(--r,rotate(0)) translateY(18px) scaleY(1.08)}}
+.line{font-weight:700;font-size:92px;line-height:1.22;letter-spacing:.03em;text-transform:uppercase}
+
+/* ---------- scene 4: 2.5D ---------- */
+.p3d{position:absolute;inset:0;perspective:1100px;perspective-origin:50% 62%}
+.t3d{position:absolute;transform-style:preserve-3d;will-change:transform}
+.t3d img{position:absolute;left:0;top:0;width:100%}
+.floor{position:absolute;left:-40%;right:-40%;bottom:-120px;height:760px;background:url(a/grid.png) center bottom/100% 100% no-repeat;opacity:.95;filter:brightness(2.4) saturate(1.4)}
+#t4a{left:0;top:330px;width:2900px;height:446px;transform-origin:left center;animation:t4a 6s linear 12s both}
+@keyframes t4a{from{transform:translateX(330px) rotateX(8deg) rotateY(34deg) rotateZ(-5deg)}to{transform:translateX(-1500px) rotateX(8deg) rotateY(34deg) rotateZ(-5deg)}}
+#t4b{right:0;top:360px;white-space:nowrap;font-weight:800;font-size:330px;line-height:1;letter-spacing:.02em;color:#fff;transform-origin:right center;animation:t4b 4s linear 18s both}
+#t4b span{position:absolute;right:0;top:0}
+@keyframes t4b{from{transform:translateX(-330px) rotateX(8deg) rotateY(-30deg) rotateZ(4deg)}to{transform:translateX(3800px) rotateX(8deg) rotateY(-30deg) rotateZ(4deg)}}
+.dof{position:absolute;top:0;bottom:0;width:48%;backdrop-filter:blur(7px)}
+.dof.r{right:0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 80%)}.dof.l{left:0;-webkit-mask-image:linear-gradient(270deg,transparent,#000 80%)}
+#pull{animation:pull 3.4s cubic-bezier(.12,.72,.18,1) 22s both}
+@keyframes pull{from{transform:scale(4.6) translate(-9%,3%);filter:blur(8px)}35%{filter:blur(0)}to{transform:scale(1);filter:blur(0)}}
+
+/* ---------- overlay transisi (waktu absolut) ---------- */
+.ov{position:absolute;pointer-events:none}
+#black{inset:0;background:#000;animation:fadeOut 1.8s ease-out 0s both}
+@keyframes fadeOut{from{opacity:1}to{opacity:0}}
+.band{left:0;top:-520px;width:4400px;height:2200px;transform:translateX(-4700px) rotate(-18deg);
+  animation:band var(--dur,1.5s) cubic-bezier(.45,.05,.55,.95) calc((var(--c) - var(--dur,1.5s)/2)) none;visibility:hidden}
+.band.rev{animation-name:bandr}
+@keyframes band{from{visibility:visible;transform:translateX(-4700px) rotate(-18deg)}to{visibility:visible;transform:translateX(2300px) rotate(-18deg)}}
+@keyframes bandr{from{visibility:visible;transform:translateX(2300px) rotate(18deg)}to{visibility:visible;transform:translateX(-4700px) rotate(18deg)}}
+.band.wave{background:linear-gradient(90deg,transparent,#5a23c8 14%,#b02fb0 34%,#e8436f 55%,#ff8a2a 78%,transparent)}
+.band.wave::after,.band.wave::before{content:"";position:absolute;top:10%;bottom:10%;width:1500px;background:url(a/pulse.png) center/100% 100% no-repeat;mix-blend-mode:screen}
+.band.wave::after{right:-300px}.band.wave::before{left:-300px;transform:scaleX(-1)}
+.band.violet{background:linear-gradient(90deg,transparent,#2a2fb8 16%,#5b3be0 45%,#8a4bff 80%,transparent)}
+.band.orange{background:linear-gradient(90deg,transparent,#ff6a1f 16%,#ff8a2a 45%,#ffb347 80%,transparent)}
+.bar{left:-10%;width:120%;height:122px;background:linear-gradient(90deg,#2440c9,#5aa0ff 30%,#b06bff 70%,#5a23c8);box-shadow:0 0 30px rgba(120,150,255,.7);
+  animation:barL 1.7s cubic-bezier(.5,0,.5,1) calc(36.15s + var(--i)*.012s) both}
+.bar:nth-child(odd){animation-name:barR}
+@keyframes barL{0%{transform:translateX(-112%)}44%,56%{transform:none}100%{transform:translateX(112%)}}
+@keyframes barR{0%{transform:translateX(112%)}44%,56%{transform:none}100%{transform:translateX(-112%)}}
+#flash{inset:0;background:radial-gradient(circle,#fff 0%,#ffb060 30%,#ff6a1f 100%);opacity:0;animation:flash 1.1s linear 25.6s both}
+@keyframes flash{0%{opacity:0}36%{opacity:1}100%{opacity:0}}
+</style></head>
+<body>
+<div id="stage">
+  <div class="neb"></div><div class="grid"></div><div id="sparks" class="abs"></div>
+
+  <!-- 1 · Logo pembuka 0–7 -->
+  <section class="sc" style="--s:0;--e:7"><div class="push"><div class="center">
+    <div class="plate an" style="--h:200px;--in:inBlur;--d:.9;--dur:1.6s">
+      <img src="a/uc.png"><img src="a/banpt.png"><img class="d" src="a/dikti.png"><img class="g" src="a/gew.png">
+      <i class="shine o" style="--d:3.2;--dur:1.6s"></i></div>
+  </div></div></section>
+
+  <!-- 3 · Penyelenggara 7–12 -->
+  <section class="sc" style="--s:7;--e:12"><div class="center" style="gap:34px">
+    <div class="glow an" style="--in:inBlur;--d:.9;font-weight:600;font-size:76px;line-height:1.25;max-width:1700px">Entrepreneurship and Venture Creation Department</div>
+    <div class="glow an" style="--in:inBlur;--d:1.3;font-weight:700;font-size:76px">Universitas Ciputra</div>
+    <div class="an" style="--in:inUp;--d:2.1;font-weight:600;font-size:52px;letter-spacing:.12em;color:#ffcf9c">mempersembahkan:</div>
+    <i class="an" style="--in:streak;--d:1.2;--dur:2.6s;position:absolute;left:0;top:720px;width:700px;height:8px;border-radius:8px;background:linear-gradient(90deg,transparent,#ff9a4a,#fff);filter:blur(2px)"></i>
+  </div></section>
+
+  <!-- 4a · IGNITE 2.5D 12–18 -->
+  <section class="sc" style="--s:12;--e:18"><div class="floor"></div>
+    <div class="p3d"><div class="t3d" id="t4a"></div></div><div class="dof r"></div></section>
+
+  <!-- 4b · Subjudul 2.5D 18–22 -->
+  <section class="sc" style="--s:18;--e:22"><div class="floor"></div>
+    <div class="p3d"><div class="t3d" id="t4b"></div></div><div class="dof l"></div></section>
+
+  <!-- 4c · Reveal logo 22–26 -->
+  <section class="sc" style="--s:22;--e:26"><div class="floor" style="height:560px;bottom:-70px"></div>
+    <div class="center" id="pull"><div class="logo" style="--w:1080px"><img src="a/ignite_white.png"><span>UC GLOBAL ENTREPRENEURSHIP WEEK 2026</span></div></div></section>
+
+  <!-- 5 · Judul flat 26–31 -->
+  <section class="sc" style="--s:26;--e:31"><div class="push"><div class="center an" style="--out:outBlur;--o:4.4;--odur:.6s">
+    <div class="logo an" style="--w:1080px;--in:pulseGlow;--d:1.2;--dur:2s"><img src="a/ignite_white.png"><span>UC GLOBAL ENTREPRENEURSHIP WEEK 2026</span></div></div></div></section>
+
+  <!-- 6 · Tema 31–37 -->
+  <section class="sc" style="--s:31;--e:37">
+    <div class="pulse sway" style="left:-420px;top:240px;width:1100px;height:600px;--r:rotate(90deg);opacity:.9"></div>
+    <div class="pulse sway" style="right:-420px;top:240px;width:1100px;height:600px;--r:rotate(-90deg);opacity:.9"></div>
+    <div class="push"><div class="center">
+      <div class="line glow an" style="--in:inBlur;--d:.3">Building Beyond Borders:</div>
+      <div class="line glow an" style="--in:inBlur;--d:.95">Entrepreneurship,</div>
+      <div class="line glow an" style="--in:inBlur;--d:1.6">Technology &amp; Connections</div>
+      <div class="line glow an" style="--in:inBlur;--d:2.25">for a Sustainable Future</div>
+    </div></div></section>
+
+  <!-- 8 · International Speaker 37–43 -->
+  <section class="sc" style="--s:37;--e:43"><div class="push"><div class="abs an" style="--out:outZoom;--o:5.4;--odur:.6s">
+    <div class="label tag an" style="--in:inBlur;--d:.9">International Speaker</div>
+    <div class="speakers"><img class="an" style="--in:inL;--d:.7;--dur:1.1s" src="a/ali.png"><img class="an" style="--in:inR;--d:.9;--dur:1.1s" src="a/sazali.png"></div>
+  </div></div></section>
+
+  <!-- 9 · Pimpinan UC 43–48 -->
+  <section class="sc" style="--s:43;--e:48"><div class="push">
+    <div class="label tag an" style="--in:inBlur;--d:.4">Speaker</div>
+    <div class="speakers"><img class="an" style="--in:inL;--d:.15;--dur:1.1s" src="a/astrid.png"><img class="an" style="--in:inR;--d:.35;--dur:1.1s" src="a/tri.png"></div>
+  </div></section>
+
+  <!-- 10 · Praktisi 48–53 -->
+  <section class="sc" style="--s:48;--e:53"><div class="push">
+    <div class="label tag an" style="--in:inBlur;--d:.9">Speaker</div>
+    <div class="speakers" style="gap:24px"><img class="an" style="--in:inR;--d:.7;--dur:1s;height:720px" src="a/teddy.png"><img class="an" style="--in:inR;--d:1;--dur:1s;height:770px" src="a/awanda.png"><img class="an" style="--in:inR;--d:1.3;--dur:1s;height:750px" src="a/elsafan.png"></div>
+  </div></section>
+
+  <!-- 11 · Pembicara UC (kewirausahaan) 53–57 -->
+  <section class="sc" style="--s:53;--e:57"><div class="push">
+    <div class="label tag an" style="--in:inBlur;--d:.9">Speaker</div>
+    <div class="speakers"><img class="an" style="--in:inBlur;--d:.75;--dur:1.2s;height:790px" src="a/nana.png"></div>
+  </div></section>
+
+  <!-- 12 · Tanggal dan venue 57–62 -->
+  <section class="sc" style="--s:57;--e:62">
+    <div class="pulse sway" style="right:-260px;top:40px;width:1100px;height:420px;opacity:.95"></div>
+    <div class="pulse sway" style="left:-260px;bottom:120px;width:1100px;height:420px;opacity:.6;--r:scaleX(-1)"></div>
+    <div class="push"><div class="center an" style="gap:44px;--out:outBlur;--o:4.55;--odur:.45s">
+      <div class="pill an" style="--in:inUp;--d:.85">18–20 NOV 2026</div>
+      <div class="pill b an" style="--in:inUp;--d:1.2">UNIVERSITAS CIPUTRA</div>
+      <div class="glow an" style="--in:inUp;--d:1.6;font-weight:600;font-size:46px;letter-spacing:.08em">Surabaya, Indonesia</div>
+    </div></div></section>
+
+  <!-- 13 · Sponsor dan media partner 62–66 -->
+  <section class="sc" style="--s:62;--e:66"><div class="center an" style="--out:outBlur;--o:3.55;--odur:.45s"><div style="display:flex;gap:220px;align-items:flex-start">
+    <div class="an" style="--in:inBlur;--d:.2;display:flex;flex-direction:column;gap:44px;align-items:center"><div class="tag">Sponsored by</div><img src="a/como.png" style="height:380px;filter:drop-shadow(0 0 40px rgba(120,160,255,.5))"></div>
+    <div class="an" style="--in:inBlur;--d:.55;display:flex;flex-direction:column;gap:44px;align-items:center"><div class="tag">Media partner</div><img src="a/agenda.png" style="height:380px;border-radius:18px;box-shadow:0 0 60px rgba(230,30,120,.45)"></div>
+  </div></div></section>
+
+  <!-- 14 · End card 66–78 -->
+  <section class="sc" style="--s:66;--e:78.2">
+    <div style="position:absolute;top:44px;left:0;right:0;display:flex;justify-content:center"><div class="plate an" style="--h:84px;--in:inBlur;--d:.2;box-shadow:0 0 50px rgba(255,160,90,.35)"><img src="a/uc.png"><img src="a/banpt.png"><img class="d" src="a/dikti.png"><img class="g" src="a/gew.png"></div></div>
+    <div class="center" style="gap:30px;padding-top:70px;padding-bottom:120px">
+      <div class="an" style="--in:inBlur;--d:.6;position:relative"><div class="logo an" style="--w:800px;--in:pulseGlow;--d:4.4;--dur:2.2s"><img src="a/ignite_white.png"><span>UC GLOBAL ENTREPRENEURSHIP WEEK 2026</span></div></div>
+      <div class="an glow" style="--in:inBlur;--d:1.2;font-weight:700;font-size:44px;line-height:1.25;letter-spacing:.03em;text-transform:uppercase">Building Beyond Borders: Entrepreneurship,<br>Technology &amp; Connections for a Sustainable Future</div>
+      <div class="an" style="--in:inUp;--d:1.8;display:flex;gap:26px"><div class="pill" style="font-size:36px;padding:17px 38px 12px">18–20 NOV 2026</div><div class="pill b" style="font-size:36px;padding:17px 38px 12px">UNIVERSITAS CIPUTRA</div></div>
+      <div class="an" style="--in:inUp;--d:2.3;display:flex;gap:48px;font-weight:600;font-size:32px;letter-spacing:.02em"><span>1 Day Pass 35K</span><span>3 Days Pass 65K</span><span>@uc_ejourney</span><span>ucignite2026.vercel.app</span></div>
+    </div>
+    <div class="an" style="--in:inUp;--d:2.8;position:absolute;bottom:0;left:0;right:0;height:112px;background:#fff;display:flex;align-items:center;justify-content:center;gap:54px;color:#1b1650;font-weight:700;font-size:24px;letter-spacing:.16em">
+      <span>SPONSORED BY</span><img src="a/como.png" style="height:92px"><span style="margin-left:40px">MEDIA PARTNER</span><img src="a/agenda.png" style="height:84px;border-radius:6px"></div>
+  </section>
+
+  <!-- transisi -->
+  <div class="ov band wave" style="--c:7s;--dur:1.9s"></div>
+  <div class="ov abs" id="bars"></div>
+  <div class="ov band wave" style="--c:48s;--dur:1.6s"></div>
+  <div class="ov band violet rev" style="--c:53s;--dur:1.3s"></div>
+  <div class="ov band orange" style="--c:57s;--dur:1.3s"></div>
+  <div class="ov" id="flash"></div>
+  <div class="ov" id="black"></div>
+  <div class="vig"></div>
+</div>
+<style>@keyframes pulseGlow{0%,100%{filter:brightness(1)}45%{filter:brightness(1.55) drop-shadow(0 0 40px #ffb060)}}@keyframes streak{from{transform:translateX(-800px);opacity:0}15%{opacity:1}85%{opacity:1}to{transform:translateX(2100px);opacity:0}}</style>
+<script>
+// percikan (deterministik)
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const sp=document.getElementById('sparks');
+for(let i=0;i<90;i++){const d=document.createElement('i');d.className='spark';const z=2+rnd()*7,t=8+rnd()*14;
+  d.style.cssText=`left:${rnd()*1920}px;top:${rnd()*1080}px;width:${z}px;height:${z}px;--t:${t}s;--dl:${-rnd()*t}s;--dx:${60+rnd()*260}px;--dy:${-80-rnd()*320}px;--op:${.35+z/14}`;sp.append(d)}
+// wipe garis horizontal (scene 6 → 8)
+const bars=document.getElementById('bars');
+for(let i=0;i<9;i++){const b=document.createElement('div');b.className='ov bar';b.style.cssText=`top:${i*120-1}px;--i:${i}`;bars.append(b)}
+// ekstrusi 2.5D: tumpukan lapisan ke arah Z
+const a=document.getElementById('t4a');
+for(let i=22;i>=1;i--){const im=new Image();im.src='a/ignite_orange.png';im.style.cssText=`transform:translateZ(${-i*5}px);filter:brightness(${(.95-i*.03).toFixed(2)})`;a.append(im)}
+{const im=new Image();im.src='a/ignite_white.png';im.style.cssText='filter:drop-shadow(0 0 14px #ffb060) drop-shadow(0 0 50px #ff7a1a)';a.append(im)}
+const b=document.getElementById('t4b'),txt='UC GLOBAL ENTREPRENEURSHIP WEEK 2026';
+for(let i=18;i>=0;i--){const s=document.createElement('span');s.textContent=txt;
+  s.style.cssText=i?`transform:translateZ(${-i*5}px);color:hsl(${24-i*.4} 100% ${56-i*2}%)`:'color:#fff;text-shadow:0 0 30px #ff8a2a';b.append(s)}
+
+// seek deterministik untuk render frame demi frame
+let anims=null;
+window.seek=t=>{if(!anims){anims=document.getAnimations();anims.forEach(x=>x.pause())}for(const x of anims)x.currentTime=t*1000};
+window.ready=Promise.all([document.fonts.ready,...[...document.images].map(i=>i.decode().catch(()=>{}))]);
+if(location.search.includes('play')){const st=document.getElementById('stage');const fit=()=>st.style.transform=`scale(${Math.min(innerWidth/1920,innerHeight/1080)})`;fit();onresize=fit}
+else window.ready.then(()=>seek(+new URLSearchParams(location.search).get('t')||0));
+</script>
+</body></html>
