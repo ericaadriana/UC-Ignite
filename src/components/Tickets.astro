@@ -2,7 +2,7 @@
 import { event, passes } from "../data/event";
 ---
 
-<section id="tickets" class="bg-deep py-20 sm:py-24">
+<section id="tickets" class="py-20 sm:py-24">
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
     <div class="text-center">
       <p class="text-sm font-semibold tracking-widest text-ember">ENTRY PASS</p>
@@ -12,7 +12,7 @@ import { event, passes } from "../data/event";
 
     <div class="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-2">
       {passes.map((p) => (
-        <div class:list={["relative rounded-3xl p-8 text-center", p.featured ? "border-fire shadow-2xl shadow-rose/20" : "bg-white/5 ring-1 ring-white/10"]}>
+        <div class:list={["relative rounded-3xl p-8 text-center", p.featured ? "border-fire shadow-2xl shadow-rose/20" : "bg-deep/75 backdrop-blur-sm ring-1 ring-white/10"]}>
           {p.featured && (
             <span class="btn-fire absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-xs font-bold text-white">
               BEST VALUE
