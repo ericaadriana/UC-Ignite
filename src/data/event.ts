@@ -132,7 +132,7 @@ export const speakers = [
     role: "CEO of Plant Doctor, Founder of Satu Garis Waktu",
     session: {
       theme: "Social Innovation",
-      when: "Thu, 19 Nov · 14.30 – 15.30",
+      when: "Thu, 19 Nov · 13.30 – 14.30",
       title: "Turning Environmental Challenges into Sustainable Business Opportunities",
       description:
         "Environmental challenges can spark social innovation and sustainable business. Through Plant Doctor and Jelajah Satu Waktu case studies, learn how eco-friendly products and nature-based education solve real problems, create social value and open profitable business opportunities.",
@@ -144,7 +144,7 @@ export const speakers = [
     role: "Founder of Switchkarir, Public Speaking Mentor",
     session: {
       theme: "Venture Lab",
-      when: "Thu, 19 Nov · 15.30 – 16.30",
+      when: "Thu, 19 Nov · 14.30 – 15.30",
       title: "Beyond Confidence: Communicate Like an Entrepreneur",
       description:
         "A practical seminar on public speaking for entrepreneurs: overcoming nervousness, structuring messages, and building credibility. Learn pitching, storytelling, and verbal and nonverbal techniques to present problems, solutions, and business advantages persuasively, with presentation practice.",
@@ -174,8 +174,8 @@ export const schedule = [
       { time: "09.00 – 12.00", title: "UC IBCC: Business Case Competition", note: "Teams from 5 countries" },
       { time: "10.00 – 11.30", title: "How to Grow Your Business & Sales In This Economy", note: "Talkshow · Mr. Sazali Johari (NUS)" },
       { time: "11.30 – 12.30", title: "Successor, Heir, or Standing on Your Own Two Feet?", note: "Family Business · Dr. Teddy Saputra" },
-      { time: "14.30 – 15.30", title: "Turning Environmental Challenges into Sustainable Business Opportunities", note: "Social Innovation · Awanda Zidni Rizki" },
-      { time: "15.30 – 16.30", title: "Beyond Confidence: Communicate Like an Entrepreneur", note: "Venture Lab · Elsafan Nahak" },
+      { time: "13.30 – 14.30", title: "Turning Environmental Challenges into Sustainable Business Opportunities", note: "Social Innovation · Awanda Zidni Rizki" },
+      { time: "14.30 – 15.30", title: "Beyond Confidence: Communicate Like an Entrepreneur", note: "Venture Lab · Elsafan Nahak" },
       { time: "08.00 – 16.00", title: "Bazaar & live entertainment" },
     ],
   },
