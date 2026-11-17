@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Bumper IGNITE 2026 v2 — overlay</title>
+<!-- Lapisan grafis transparan di atas video dasar (klip stok).
+     Semua waktu animasi absolut dalam detik, sinkron dengan musik "openmindaudio intro":
+     hentakan utama di 43,96 dtk = munculnya IGNITE. window.seek(t) dipakai render.cjs. -->
+<style>
+@font-face{font-family:Russo;src:url(fonts/russo-one-latin-400-normal.woff2)}
+@font-face{font-family:Spartan;font-weight:500;src:url(fonts/league-spartan-latin-500-normal.woff2)}
+@font-face{font-family:Spartan;font-weight:600;src:url(fonts/league-spartan-latin-600-normal.woff2)}
+@font-face{font-family:Spartan;font-weight:700;src:url(fonts/league-spartan-latin-700-normal.woff2)}
+@font-face{font-family:Spartan;font-weight:800;src:url(fonts/league-spartan-latin-800-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:transparent;overflow:hidden}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;color:#fff;font-family:Spartan,sans-serif}
+.l{position:absolute;inset:0}
+.c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.cap{font-weight:800;font-size:128px;letter-spacing:.035em;line-height:1.05;text-shadow:0 6px 40px rgba(0,0,0,.55)}
+.soft{font-weight:600;font-size:112px;letter-spacing:.02em;text-shadow:0 6px 40px rgba(0,0,0,.6)}
+.dim{position:absolute;inset:0;background:radial-gradient(ellipse 62% 50% at 50% 50%,rgba(0,0,0,.5),rgba(0,0,0,.18) 70%,rgba(0,0,0,0))}
+.num3d{font-family:Russo;font-size:330px;letter-spacing:.04em;color:#fff;
+  text-shadow:1px 1px 0 #ffd3a8,2px 2px 0 #ffb070,3px 3px 0 #ff9a4a,4px 4px 0 #ff8a2a,5px 5px 0 #f07a1f,6px 6px 0 #e06a14,7px 7px 0 #c9590d,8px 8px 0 #b04c0a,
+  10px 12px 26px rgba(0,0,0,.55),0 0 50px rgba(255,140,40,.55),0 0 120px rgba(255,110,20,.35)}
+/* animasi umum (delay diisi inline, waktu absolut) */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeOut{from{opacity:1}to{opacity:0}}
+@keyframes pop{0%{opacity:0;transform:scale(.85);filter:blur(10px)}55%{opacity:1;transform:scale(1.05);filter:blur(0)}78%{transform:scale(.985)}100%{opacity:1;transform:scale(1)}}
+@keyframes rise{from{opacity:0;transform:translateY(46px);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes outBlur{to{opacity:0;filter:blur(18px);transform:scale(1.06)}}
+@keyframes drift{from{transform:scale(1)}to{transform:scale(1.06)}}
+/* scene 1: 2026 */
+@keyframes n2026in{from{opacity:0;transform:scale(.78);filter:blur(14px)}to{opacity:1;transform:scale(.9);filter:blur(0)}}
+@keyframes n2026grow{from{transform:scale(.9)}to{transform:scale(1.32)}}
+@keyframes n2026fly{from{transform:scale(1.32);opacity:1}to{transform:scale(7);opacity:0;filter:blur(6px)}}
+/* scene 8: IGNITE (efek A: besar → mundur ke tengah → bounce) */
+@keyframes igIn{
+  0%{opacity:0;transform:scale(3.2);filter:blur(14px);animation-timing-function:cubic-bezier(.12,.75,.25,1)}
+  12%{opacity:1}
+  50%{transform:scale(.955);filter:blur(0);animation-timing-function:cubic-bezier(.4,0,.4,1)}
+  72%{transform:scale(1.03);animation-timing-function:cubic-bezier(.4,0,.4,1)}
+  100%{opacity:1;transform:scale(1);filter:blur(0)}}
+@keyframes igPush{from{transform:scale(1)}to{transform:scale(1.055)}}
+@keyframes igGlow{0%,100%{filter:drop-shadow(0 0 0 rgba(255,130,30,0))}40%{filter:drop-shadow(0 0 38px rgba(255,140,40,.95)) brightness(1.12)}}
+@keyframes flash{0%{opacity:0}18%{opacity:.95}100%{opacity:0}}
+@keyframes leak{0%{opacity:0;transform:translateX(-900px) scale(.8)}70%{opacity:.85}100%{opacity:1;transform:translateX(250px) scale(1.25)}}
+@keyframes streak{0%{opacity:0;transform:translateX(-1400px) scaleX(.4)}40%{opacity:1}100%{opacity:0;transform:translateX(1400px) scaleX(1.4)}}
+/* scene 9: zoom out tiga baris */
+@keyframes zoomOut{from{opacity:0;transform:scale(2.3);filter:blur(16px)}60%{opacity:1;filter:blur(0)}to{opacity:1;transform:scale(1);filter:blur(0)}}
+.line9{font-weight:700;font-size:96px;letter-spacing:.04em;line-height:1.12;text-shadow:0 6px 40px rgba(0,0,0,.6)}
+.line9.y{font-family:Russo;font-weight:400;font-size:150px;color:#fff;margin-top:14px;letter-spacing:.06em;
+  text-shadow:3px 3px 0 #ff9a4a,6px 6px 0 #d0600f,0 0 50px rgba(255,140,40,.6)}
+</style></head>
+<body><div id="stage">
+
+  <!-- penggelap tepi (grading ringan) -->
+  <div class="l" style="box-shadow:inset 0 0 300px 80px rgba(0,0,0,.55)"></div>
+
+  <!-- 1 · 2026 (0–7,8) -->
+  <div class="l" style="background:#000;animation:fadeOut 2s ease-in-out 1.6s both"></div>
+  <div class="c" style="animation:n2026fly .9s cubic-bezier(.6,0,.9,.4) 6.9s both">
+    <div style="animation:n2026grow 5.1s linear 1.8s both">
+      <div class="num3d" style="animation:n2026in 1.3s cubic-bezier(.2,.7,.2,1) .5s both">2026</div>
+    </div>
+  </div>
+
+  <!-- 2 · BUSINESS IS CHANGING. (7,8–15,2) -->
+  <div class="dim" style="animation:fadeIn .4s ease 7.8s both,fadeOut .3s ease 14.95s forwards"></div>
+  <div class="c"><div class="cap" style="animation:pop .8s ease-out 8.05s both,outBlur .35s ease-in 14.85s forwards">BUSINESS IS CHANGING.</div></div>
+
+  <!-- 3 · and so are we (15,2–20,4) -->
+  <div class="dim" style="animation:fadeIn .5s ease 15.2s both,fadeOut .4s ease 20.0s forwards"></div>
+  <div class="c"><div class="soft" style="animation:rise 1.1s cubic-bezier(.2,.7,.2,1) 15.7s both,outBlur .4s ease-in 19.95s forwards">and so are we</div></div>
+
+  <!-- 4 · Uniting nature, technology, and humanity. (20,4–28,2) -->
+  <div class="dim" style="animation:fadeIn .5s ease 20.4s both,fadeOut .4s ease 27.85s forwards"></div>
+  <div class="c" style="animation:outBlur .4s ease-in 27.75s forwards">
+    <div class="soft" style="font-size:96px;line-height:1.2">
+      <span style="display:inline-block;animation:rise .8s cubic-bezier(.2,.7,.2,1) 20.7s both">Uniting nature,</span>
+      <span style="display:inline-block;animation:rise .8s cubic-bezier(.2,.7,.2,1) 23.2s both">technology,</span><br>
+      <span style="display:inline-block;animation:rise .8s cubic-bezier(.2,.7,.2,1) 25.8s both">and humanity.</span>
+    </div>
+  </div>
+
+  <!-- 5–7 · NEW ERA / NEW PERSPECTIVES / NEW SPIRIT -->
+  <div class="dim" style="animation:fadeIn .4s ease 28.2s both,fadeOut .4s ease 41.2s forwards"></div>
+  <div class="c"><div class="cap" style="animation:pop .8s ease-out 28.45s both,outBlur .35s ease-in 32.85s forwards">NEW ERA OF BUSINESS.</div></div>
+  <div class="c"><div class="cap" style="animation:pop .8s ease-out 33.45s both,outBlur .35s ease-in 37.85s forwards">NEW PERSPECTIVES.</div></div>
+  <div class="c"><div class="cap" style="animation:pop .8s ease-out 38.45s both,outBlur .5s ease-in 41.0s forwards">NEW SPIRIT.</div></div>
+  <div class="l" style="background:#000;animation:fadeIn .7s ease-in 40.9s both,fadeOut .01s linear 43.96s forwards"></div>
+
+  <!-- jeda 41,6–43,96: light leak membangun ketegangan -->
+  <div class="l" style="background:radial-gradient(ellipse 45% 70% at 50% 50%,rgba(255,150,60,.55),rgba(255,90,20,.18) 45%,transparent 72%);mix-blend-mode:normal;
+       animation:leak 1.9s cubic-bezier(.5,0,.8,.6) 42.06s both,fadeOut .4s ease 43.96s forwards"></div>
+  <div class="l" style="top:535px;height:10px;bottom:auto;background:linear-gradient(90deg,transparent,#fff 45%,#ffb060 55%,transparent);filter:blur(3px);
+       animation:streak 1.1s cubic-bezier(.5,0,.5,1) 42.9s both"></div>
+
+  <!-- 8 · IGNITE (43,96–51) -->
+  <div class="l" style="background:radial-gradient(ellipse 55% 38% at 50% 50%,rgba(0,0,0,.72),rgba(0,0,0,.25) 70%,rgba(0,0,0,0) 100%);animation:fadeIn .3s ease 43.96s both,fadeOut .5s ease 50.5s forwards"></div>
+  <div class="c" style="animation:igPush 6.5s linear 44.5s both">
+    <div style="animation:outBlur .55s ease-in 50.45s forwards">
+      <div style="animation:igIn 1.15s linear 43.96s both">
+        <img src="a/ignite3d.png" style="width:1400px;display:block;animation:igGlow 1.6s ease-in-out 45.0s both">
+      </div>
+    </div>
+  </div>
+  <div class="l" style="background:#fff8ee;animation:flash .5s ease-out 43.96s both"></div>
+
+  <!-- 9 · Universitas Ciputra / Global Entrepreneurship Week / 2026 (51–57) -->
+  <div class="dim" style="animation:fadeIn .5s ease 51s both,fadeOut .4s ease 56.6s forwards"></div>
+  <div class="c" style="animation:outBlur .5s ease-in 56.45s forwards">
+    <div class="line9" style="animation:zoomOut 1.3s cubic-bezier(.16,.8,.24,1) 51.2s both">Universitas Ciputra</div>
+    <div class="line9" style="animation:zoomOut 1.3s cubic-bezier(.16,.8,.24,1) 51.55s both">Global Entrepreneurship Week</div>
+    <div class="line9 y" style="animation:zoomOut 1.3s cubic-bezier(.16,.8,.24,1) 51.9s both">2026</div>
+  </div>
+
+  <!-- 10 · Event by (57–61) -->
+  <div class="c" style="gap:26px;animation:outBlur .5s ease-in 60.45s forwards">
+    <div style="font-weight:600;font-size:46px;letter-spacing:.32em;text-transform:uppercase;color:#ffc48a;animation:rise 1s cubic-bezier(.2,.7,.2,1) 57.35s both">Event by</div>
+    <div style="font-weight:700;font-size:84px;letter-spacing:.02em;text-shadow:0 6px 40px rgba(0,0,0,.6);animation:rise 1.1s cubic-bezier(.2,.7,.2,1) 57.7s both">Entrepreneurship and Venture Creation</div>
+  </div>
+
+  <!-- 11 · Logo Universitas Ciputra (61–67) -->
+  <div class="c"><img src="a/logo_uc.png" style="width:470px;filter:drop-shadow(0 0 40px rgba(255,210,140,.25));
+       animation:rise 1.4s cubic-bezier(.2,.7,.2,1) 61.25s both"></div>
+  <div class="l" style="background:#000;animation:fadeIn 1.6s ease-in-out 65.3s both"></div>
+
+</div>
+<script>
+let anims=null;
+window.seek=t=>{if(!anims){anims=document.getAnimations();anims.forEach(a=>a.pause())}for(const a of anims)a.currentTime=t*1000};
+window.ready=Promise.all([document.fonts.ready,...[...document.images].map(i=>i.decode().catch(()=>{}))]);
+</script>
+</body></html>
